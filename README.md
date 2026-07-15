@@ -6,6 +6,8 @@ Follow the steps below to access Git through Windows Terminal, temporarily log i
 
 ### 1. Installing Git (if not already installed)
 
+**Windows:**
+
 **Option A – Using winget (recommended):**
 
 Open **Windows Terminal** (or PowerShell) and run:
@@ -24,6 +26,27 @@ After installation, restart Windows Terminal and verify:
 git --version
 ```
 
+**Linux:**
+
+On Ubuntu/Debian-based systems:
+
+```bash
+sudo apt-get update
+sudo apt-get install git
+```
+
+On Fedora/RHEL-based systems:
+
+```bash
+sudo dnf install git
+```
+
+Verify installation:
+
+```bash
+git --version
+```
+
 ### 2. Temporarily Logging in to Git
 
 If you are using HTTPS to interact with your repositories, you can log in using your GitHub credentials. For security reasons, it’s better to use a personal access token instead of your GitHub password.
@@ -35,6 +58,8 @@ If you are using HTTPS to interact with your repositories, you can log in using 
 
 #### Configure Git with Your Credentials:
 
+**Windows:**
+
 ```powershell
 git config --global user.name "Your Name"
 git config --global user.email "your-email@example.com"
@@ -42,11 +67,30 @@ git config --global user.email "your-email@example.com"
 
 When you perform a Git operation that requires authentication (e.g., `git push`), Windows will prompt you via the **Git Credential Manager** — enter your GitHub username and the personal access token as the password.
 
+**Linux:**
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+```
+
+For Linux, you can store credentials using the credential helper:
+
+```bash
+git config --global credential.helper store
+```
+
 ### 3. Cloning a Repository
 
 To clone a repository, you need the URL of the repository. This can be found on the repository’s GitHub page.
 
+**Windows & Linux:**
+
 ```powershell
+git clone <<URI of the Repo>>
+```
+
+```bash
 git clone <<URI of the Repo>>
 ```
 
@@ -54,9 +98,17 @@ git clone <<URI of the Repo>>
 
 Navigate into the cloned repository:
 
+**Windows & Linux:**
+
 ```powershell
 cd repository-name
 ```
+
+```bash
+cd repository-name
+```
+
+**Windows:**
 
 Edit or create files using your preferred text editor. For example, open the folder in VS Code:
 
@@ -70,19 +122,51 @@ Or open a specific file with Notepad:
 notepad example.java
 ```
 
+**Linux:**
+
+Edit or create files using your preferred text editor. For example:
+
+```bash
+code .
+```
+
+Or use a terminal editor like nano:
+
+```bash
+nano example.java
+```
+
+Or vim:
+
+```bash
+vim example.java
+```
+
 Save your changes before proceeding.
 
 ### 5. Adding Changes
 
 After making changes, stage them for commit:
 
+**Windows & Linux:**
+
 ```powershell
+git add .
+```
+
+```bash
 git add .
 ```
 
 `'.'` stages all changed files. You can also specify individual files by name:
 
+**Windows & Linux:**
+
 ```powershell
+git add example.java
+```
+
+```bash
 git add example.java
 ```
 
@@ -90,7 +174,13 @@ git add example.java
 
 Commit your staged changes with a meaningful message:
 
+**Windows & Linux:**
+
 ```powershell
+git commit -m "Your commit message"
+```
+
+```bash
 git commit -m "Your commit message"
 ```
 
@@ -98,7 +188,13 @@ git commit -m "Your commit message"
 
 Push your changes to the remote repository:
 
+**Windows & Linux:**
+
 ```powershell
+git push origin main
+```
+
+```bash
 git push origin main
 ```
 
@@ -108,20 +204,39 @@ Branches let you work on features or fixes in isolation from the `main` branch.
 
 Create a new branch and switch to it immediately:
 
+**Windows & Linux:**
+
 ```powershell
 git checkout -b branch-name
 ```
 
+```bash
+git checkout -b branch-name
+```
+
 Or, create the branch first and switch to it separately:
+
+**Windows & Linux:**
 
 ```powershell
 git branch branch-name
 git checkout branch-name
 ```
 
+```bash
+git branch branch-name
+git checkout branch-name
+```
+
 To list all local branches (the active branch is marked with `*`):
 
+**Windows & Linux:**
+
 ```powershell
+git branch
+```
+
+```bash
 git branch
 ```
 
@@ -129,19 +244,37 @@ git branch
 
 To switch to an existing branch:
 
+**Windows & Linux:**
+
 ```powershell
+git checkout branch-name
+```
+
+```bash
 git checkout branch-name
 ```
 
 Or using the newer `switch` command (Git 2.23+):
 
+**Windows & Linux:**
+
 ```powershell
+git switch branch-name
+```
+
+```bash
 git switch branch-name
 ```
 
 To switch back to `main`:
 
+**Windows & Linux:**
+
 ```powershell
+git checkout main
+```
+
+```bash
 git checkout main
 ```
 
@@ -149,13 +282,25 @@ git checkout main
 
 When pushing a new branch for the first time, set the upstream remote so future `git push` commands know where to send changes:
 
+**Windows & Linux:**
+
 ```powershell
+git push -u origin branch-name
+```
+
+```bash
 git push -u origin branch-name
 ```
 
 For subsequent pushes on the same branch:
 
+**Windows & Linux:**
+
 ```powershell
+git push
+```
+
+```bash
 git push
 ```
 
