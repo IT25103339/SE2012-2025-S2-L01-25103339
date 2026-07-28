@@ -1,6 +1,16 @@
 import java.util.Scanner;
 
-public class Marks {
+public class MarksNew {
+    
+    // Helper method for grades
+    public static String getGrade(int mark) {
+        if (mark >= 90) return "Grade A";
+        else if (mark >= 80) return "Grade B";
+        else if (mark >= 70) return "Grade C";
+        else if (mark >= 60) return "Grade D";
+        else return "Fail";
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
@@ -8,17 +18,17 @@ public class Marks {
         int n = Integer.parseInt(sc.nextLine());
         
         int[][] marks = new int[n][3];
-        
         boolean run = true;
         
         while (run) {
-            System.out.println("\n*** MENU ***");
+            System.out.println("\n--- MENU ---");
             System.out.println("1. Add student marks");
             System.out.println("2. Update student mark");
             System.out.println("3. Subject average");
             System.out.println("4. Student average");
             System.out.println("5. Student total");
-            System.out.println("6. Exit");
+            System.out.println("6. Display grades");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
             
             int choice = Integer.parseInt(sc.nextLine());
@@ -100,12 +110,25 @@ public class Marks {
                     break;
                     
                 case 6:
+                    // Option 6 newly added for displaying grades tabularly
+                    System.out.println("\nGrades:");
+                    System.out.printf("%-10s %-12s %-12s %-12s%n", "Student", "Math", "Chemistry", "Physics");
+                    for (int i = 0; i < n; i++) {
+                        System.out.printf("%-10d %-12s %-12s %-12s%n", 
+                            i + 1, 
+                            getGrade(marks[i][0]), 
+                            getGrade(marks[i][1]), 
+                            getGrade(marks[i][2]));
+                    }
+                    break;
+                    
+                case 7:
                     run = false;
                     System.out.println("Exiting...");
                     break;
                     
                 default:
-                    System.out.println("Invalid choice. Please enter a number between 1 and 6.");
+                    System.out.println("Invalid choice. Please enter a number between 1 and 7.");
                     break;
             }
         }
